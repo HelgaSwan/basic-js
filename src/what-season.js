@@ -21,14 +21,14 @@ function getSeason(date) {
       return "winter";
     } else {
         try {
-        if (isNaN(month) || month === undefined || !(month) || month < 0 || month > 11) {
-          throw ("Invalid date!");
+          if (isNaN(month) || month === undefined || !(month) || month < 0 || month > 11) {
+            throw ("Invalid date!");
           
-        }
-      } 
-      catch(err) {
-        return (err);
-      }
+          }
+          } 
+          catch(err) {
+            return (err);
+          }
 
     }
     
