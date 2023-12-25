@@ -17,37 +17,46 @@ function transform(arr) {
   const array1 = arr.slice(0);
   let ind = 0;
   const arrayResult = [];
-  if (!(Array.isArray(arr))) {
-    throw new Error("\'arr\' parameter must be an instance of the Array!");
-  } 
-  
+
+  try {
+    if (!(Array.isArray(arr))) throw new Error("\'arr\' parameter must be an instance of the Array!");
+  }
+  catch(err) {
+    message.innerHTML = err;
+  }
+  //  {
+    
     array1.forEach((el, i) => {
       if (el === '--double-prev') {arrayResult.push(array1[i - 1]); }   
       if (el === '--discard-prev') {arrayResult.splice(i-1,1);}
-     if (el === '--discard-next') {array1.splice(i+1,1);}
+      if (el === '--discard-next') {array1.splice(i+1,1);}
       if (el === '--double-next') {arrayResult.push(array1[i + 1]);}
       else {arrayResult.push(el);}
-  
+      
     })
     let index = arrayResult.indexOf('--double-prev');
-     if (index !== -1) {
+    if (index !== -1) {
       arrayResult.splice(index,1);
       }
-    index = arrayResult.indexOf('--discard-prev');
+      index = arrayResult.indexOf('--discard-prev');
       if (index !== -1) {
-       arrayResult.splice(index,1);
-       }
-    index = arrayResult.indexOf('--discard-next');
-       if (index !== -1) {
         arrayResult.splice(index,1);
-        }
-    index = arrayResult.indexOf(undefined);
-        if (index !== -1) {
-         arrayResult.splice(index,1);
-         }
-    return arrayResult;
-  }
+      }
+      index = arrayResult.indexOf('--discard-next');
+      if (index !== -1) {
+        arrayResult.splice(index,1);
+      }
+      index = arrayResult.indexOf(undefined);
+      if (index !== -1) {
+        arrayResult.splice(index,1);
+      }
+      return arrayResult;
+    // } else {
 
+    //   throw new Error("\'arr\' parameter must be an instance of the Array!");
+    // } 
+}
+    
 module.exports = {
   transform
 };
